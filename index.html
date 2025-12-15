@@ -23,9 +23,6 @@
       rel="stylesheet"
     />
     
-    <!-- Added Paystack inline script -->
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    
     <style>
       /* CSS Reset & Variables */
       *, *::before, *::after {
@@ -709,80 +706,9 @@
         color: var(--gray-500);
       }
 
-      /* Payment Section */
-      .payment {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        position: relative;
-        overflow: hidden;
-      }
 
-      .payment::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
 
-      .payment .section-label,
-      .payment .section-title,
-      .payment .section-subtitle {
-        color: var(--white);
-      }
-
-      .payment .section-subtitle {
-        color: var(--gray-400);
-      }
-
-      /* Payment Section Updated for Paystack */
-      .payment-section {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        position: relative;
-        overflow: hidden;
-        padding: 100px 0;
-      }
-
-      .payment-bg { /* Replaces the ::before pseudo-element for the background pattern */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        opacity: 0.7; /* Slightly more visible */
-        z-index: 0;
-      }
-
-      .payment-section .section-header {
-        position: relative; /* Ensure header is above background */
-        z-index: 1;
-        color: var(--white); /* Text color for header */
-      }
-
-      .payment-section .section-title,
-      .payment-section .section-subtitle {
-        color: var(--white);
-      }
-      
-      .payment-section .section-subtitle {
-        color: var(--gray-300); /* Lighter subtitle color */
-      }
-
-      .payment-form-wrapper {
-        max-width: 600px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-      }
-
-      .payment-form {
-        background: var(--white);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        box-shadow: var(--shadow-xl);
-      }
+   
 
       .form-row {
         display: grid;
@@ -1338,7 +1264,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#payment">Payment</a></li>
+          
           <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
@@ -1357,7 +1283,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#payment">Payment</a></li>
+        
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1383,10 +1309,7 @@
               <i class="fas fa-arrow-right"></i>
               Our Services
             </a>
-            <a href="#payment" class="btn btn-outline">
-              <i class="fas fa-credit-card"></i>
-              Make Payment
-            </a>
+            
           </div>
         </div>
       </div>
@@ -1578,100 +1501,10 @@
       </div>
     </section>
 
-    <!-- Payment Section -->
-    <section id="payment" class="payment-section">
-      <div class="payment-bg"></div>
-      <div class="container">
-        <div class="section-header">
-          <span class="section-badge">Secure Payments</span>
-          <h2 class="section-title">Pay for Your Shipment</h2>
-          <p class="section-subtitle">
-            Fast, secure payments powered by Paystack. Pay with card, bank transfer, or USSD.
-          </p>
-        </div>
+    
+             
 
-        <div class="payment-form-wrapper">
-          <div class="payment-form" id="paymentFormContainer">
-            <!-- Payment Form -->
-            <form id="paymentForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" class="form-control" placeholder="John" required />
-                </div>
-                <div class="form-group">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" class="form-control" placeholder="Doe" required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" placeholder="john@example.com" required />
-                <p class="error-message" id="emailError">Please enter a valid email address</p>
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" class="form-control" placeholder="+234 xxx xxx xxxx" required />
-              </div>
-              <div class="form-group">
-                <label for="invoice">Invoice/Reference Number</label>
-                <input type="text" id="invoice" class="form-control" placeholder="INV-XXXXXX" required />
-              </div>
-              
-              <!-- Currency Selection -->
-              <div class="form-group">
-                <label>Currency</label>
-                <div class="currency-selector">
-                  <button type="button" class="currency-btn active" data-currency="NGN">NGN (₦)</button>
-                  <button type="button" class="currency-btn" data-currency="USD">USD ($)</button>
-                  <button type="button" class="currency-btn" data-currency="GHS">GHS (₵)</button>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" class="form-control" placeholder="Enter amount" min="100" step="0.01" required />
-              </div>
-
-              <!-- Amount Display -->
-              <div class="amount-display" id="amountDisplay" style="display: none;">
-                <div class="label">You will pay</div>
-                <div class="value" id="displayAmount">₦0.00</div>
-              </div>
-
-              <div class="payment-notice">
-                <i class="fas fa-shield-alt"></i>
-                <p>Secured by Paystack. Your payment information is encrypted and processed securely. This is a demo using Paystack test mode.</p>
-              </div>
-
-              <button type="submit" class="paystack-btn" id="paystackBtn">
-                <i class="fas fa-lock"></i>
-                Pay with Paystack
-              </button>
-
-              <div class="payment-methods-info">
-                <span><i class="fab fa-cc-visa"></i> Visa</span>
-                <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
-                <span><i class="fas fa-university"></i> Bank</span>
-                <span><i class="fas fa-mobile-alt"></i> USSD</span>
-              </div>
-            </form>
-
-            <!-- Success Message -->
-            <div class="payment-success" id="successMessage" style="display: none;">
-              <div class="icon">
-                <i class="fas fa-check"></i>
-              </div>
-              <h3>Payment Successful!</h3>
-              <p>Thank you for your payment. A confirmation has been sent to your email.</p>
-              <div class="reference" id="paymentReference">REF-XXXXXXXX</div>
-              <p style="font-size: 0.875rem;">Please save this reference for your records.</p>
-              <button class="btn-new-payment" id="newPaymentBtn">Make Another Payment</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+           
 
     <!-- Contact Section -->
     <section class="section" id="contact">
@@ -1743,7 +1576,7 @@
               <li><a href="#home">Home</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#payment">Payment</a></li>
+              
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
@@ -1920,108 +1753,12 @@
         }
       });
 
-      // Generate unique reference
-      function generateReference() {
-        const timestamp = Date.now().toString(36);
-        const randomStr = Math.random().toString(36).substring(2, 8);
-        return `OLB-${timestamp}-${randomStr}`.toUpperCase();
-      }
+      
+                      
+            
+          
 
-      // Initialize Paystack payment
-      function payWithPaystack(email, amount, currency, metadata) {
-        const reference = generateReference();
-        
-        const handler = PaystackPop.setup({
-          key: PAYSTACK_PUBLIC_KEY,
-          email: email,
-          amount: amount * 100, // Paystack expects amount in kobo/cents
-          currency: currency,
-          ref: reference,
-          metadata: {
-            custom_fields: [
-              {
-                display_name: "Customer Name",
-                variable_name: "customer_name",
-                value: metadata.customerName
-              },
-              {
-                display_name: "Phone Number",
-                variable_name: "phone",
-                value: metadata.phone
-              },
-              {
-                display_name: "Invoice Number",
-                variable_name: "invoice",
-                value: metadata.invoice
-              }
-            ]
-          },
-          callback: function(response) {
-            // Payment successful
-            paymentReference.textContent = response.reference;
-            paymentForm.style.display = 'none';
-            successMessage.style.display = 'block';
-          },
-          onClose: function() {
-            // Payment window closed
-            console.log('Payment window closed');
-          }
-        });
-        
-        handler.openIframe();
-      }
-
-      // Form submission
-      paymentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Validate email
-        if (!isValidEmail(emailInput.value)) {
-          emailInput.classList.add('error');
-          emailError.classList.add('show');
-          emailInput.focus();
-          return;
-        }
-
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const phone = document.getElementById('phone').value;
-        const invoice = document.getElementById('invoice').value;
-        const amount = parseFloat(amountInput.value);
-
-        if (amount < 100 && selectedCurrency === 'NGN') {
-          alert('Minimum amount is ₦100');
-          return;
-        }
-
-        if (amount < 1 && (selectedCurrency === 'USD' || selectedCurrency === 'GHS')) {
-          alert('Minimum amount is 1 ' + selectedCurrency);
-          return;
-        }
-
-        // Initialize Paystack payment
-        payWithPaystack(
-          emailInput.value,
-          amount,
-          selectedCurrency,
-          {
-            customerName: `${firstName} ${lastName}`,
-            phone: phone,
-            invoice: invoice
-          }
-        );
-      });
-
-      // New payment button
-      newPaymentBtn.addEventListener('click', () => {
-        paymentForm.reset();
-        paymentForm.style.display = 'block';
-        successMessage.style.display = 'none';
-        amountDisplay.style.display = 'none';
-        currencyBtns.forEach(btn => btn.classList.remove('active'));
-        document.querySelector('[data-currency="NGN"]').classList.add('active');
-        selectedCurrency = 'NGN';
-      });
+      
 
       // Intersection Observer for animations
       const observerOptions = {
